@@ -4,20 +4,30 @@ import App from './App';
 import './index.css'
 //import { Welcome } from './components/Welcome';
 //import { WelcomeAge } from './components/Welcome';
-import { loadCountries, loadWeather } from './components/Render';
+import { WelcomeAge, loadCountries} from './components/Countries';
+import { loadWeather} from './components/Weather';
+import { renderCapitals} from './components/Render';
 
-
+const continents = ['Asia', 'Africa', 'North America', 'South America', 'Antarctica', 'Europe', 'Australia' ];
 
 const countries = await loadCountries();
 
 const city = 'London'
 const weather = await loadWeather(city);
 
-const html = <h1>{countries}</h1>
+let html = '';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <></>
-);
+for( const c of countries) {
+ // html += `<WelcomeAge name=${c.name} capital=${c.capitals} continents=${c.continents} population=${c.population} map=${c.map}/>`
+
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <>
+    <WelcomeAge name={c.name} capitals={c.capitals} continents={c.continents} population={c.population} map={c.map}/>
+    </>
+  );
+}
+
+
 
 /*ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
