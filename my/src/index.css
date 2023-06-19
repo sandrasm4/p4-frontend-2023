@@ -14,6 +14,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.estilo1 {
+  color: #ff64c6;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
