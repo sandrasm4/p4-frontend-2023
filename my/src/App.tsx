@@ -3,6 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+/*function App() {
+  const [Asia, setAsia] = useState(1);
+  const [Africa, setAfrica] = useState(2);
+  const [Europe, setEurope] = useState({name:"joe", age: 40});
+}*/
 function App() {
   const [count, setCount] = useState(0)
 

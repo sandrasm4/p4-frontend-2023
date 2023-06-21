@@ -4,7 +4,7 @@ import App from './App';
 import './index.css'
 //import { Welcome } from './components/Welcome';
 //import { WelcomeAge } from './components/Welcome';
-import { WelcomeAge, loadCountries} from './components/Countries';
+import { loadCountries} from './components/Countries';
 import { loadWeather} from './components/Weather';
 import { renderCapitals} from './components/Render';
 
@@ -15,26 +15,53 @@ const countries = await loadCountries();
 const city = 'London'
 const weather = await loadWeather(city);
 
-let html = [];
 
 
-export default function List() {
+
+export  function Lista() {
   const listItems = countries.map(c =>
     <li>{c.capitals[0]}</li>
   );
-  return <ul>{listItems}</ul>;
+    return <ul>{listItems}</ul>;
 }
-let cont=0;
 
-for( const c of countries) {
-  cont = cont +1;
-  html.push(<li key={cont}>{c.name}</li>)
-}
-console.log(html);  
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+export  function LaLista( continent: String ) {
+  let html = [];
+  for( const c of countries) {
+    if(c.continents[0] == continent){
+      html.push(<button>{c.name}</button>)
+    } 
+  }
+  return html;
+}  
+
+/*ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ul>{html}</ul>
-);
+);*/
 
+class TodosPaises extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {lista: LaLista('Europe')};
+  }
+  render() {
+    return (<>
+      <h1 style={{color: this.props.color}}>Sandraa</h1>
+      <h2>{this.state.lista}</h2>
+    </>);
+  }
+  componentDidMount(): void {
+    const filtrar = () => {this.setState({lista: LaLista('Asia')})}
+    this.timer = setInterval(filtrar, 1000)
+  }
+  componentDidUpdate(): void {
+    clearInterval(this.timer)
+  }
+}
+  
+ 
+  
+ReactDOM.createRoot(document.getElementById('root')).render(<TodosPaises color="red"/>)
 
 /*class ActionLink extends React.Component {
   constructor(props) {

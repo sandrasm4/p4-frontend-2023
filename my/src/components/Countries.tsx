@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export class Country {
     constructor(
@@ -16,6 +16,27 @@ export const loadCountries = async () => {
     return allCountries;
 } 
 
-export const WelcomeAge = (users: Country) => {
-    return <h1>tienes {users.name} años</h1>
-}
+
+
+
+
+
+
+/*export default class App extends React.Component {
+// state variable "count"
+ constructor(props) {
+ super(props);
+ this.state = { count: 0 }; }
+
+ render() {
+ return ( <div>
+    <p>You clicked {this.state.count} times</p>
+    <button onClick={() =>
+    this.setState( prevState => ({count: prevState.count+1})) }>
+
+    </button>
+    <button onClick={() => this.setState(0)}>Reset</button>
+    </div> );
+    }
+}*/
+
