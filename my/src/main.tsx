@@ -15,21 +15,45 @@ const countries = await loadCountries();
 const city = 'London'
 const weather = await loadWeather(city);
 
-let html = '';
+let html = [];
+
+
+export default function List() {
+  const listItems = countries.map(c =>
+    <li>{c.capitals[0]}</li>
+  );
+  return <ul>{listItems}</ul>;
+}
+let cont=0;
 
 for( const c of countries) {
- // html += `<WelcomeAge name=${c.name} capital=${c.capitals} continents=${c.continents} population=${c.population} map=${c.map}/>`
-
-  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <>
-    <WelcomeAge name={c.name} capitals={c.capitals} continents={c.continents} population={c.population} map={c.map}/>
-    </>
-  );
+  cont = cont +1;
+  html.push(<li key={cont}>{c.name}</li>)
 }
+console.log(html);  
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <ul>{html}</ul>
+);
 
 
-
-/*ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+/*class ActionLink extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { relojVisible: false};
+  };
+  handleClick = (e) =>{
+    e.preventDefault();
+    this.setState(prevState => ({relojVisible: !prevState.relojVisible}))
+  }
+  render() {
+    return (
+      <a href='#' onCick={this.handleClick}> Click me
+      {this.state.relojVisible && <Clock/>} </a>
+      );
+  }
+}
+*/
+/*ReactDOM.createR(document.getElementById('root') as HTMLElement).render(
   <>
     <div className='estilo1'>
       <h1>
