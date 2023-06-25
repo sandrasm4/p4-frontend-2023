@@ -18,8 +18,10 @@ export class Weather {
 }
 
 export const loadWeather = async ( city: String ) => {
+
     const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${MY_TOKEN}`).then(result=>result.json());
     const weather = new Weather(result.id, result.name, result.main.temp, result.main.temp_max, result.main.temp_min, result.main.feels_like, result.main.humidity, result.weather[0].description, result.weather[0].icon);
+
     return weather;
 } 
 
