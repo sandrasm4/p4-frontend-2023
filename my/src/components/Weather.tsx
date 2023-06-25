@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MY_TOKEN } from "./config";
+import { MY_TOKEN } from "./config.ts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
