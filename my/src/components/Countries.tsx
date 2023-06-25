@@ -3,6 +3,7 @@ import { Link, useMatch } from "react-router-dom";
 
 export class Country {
     constructor(
+        public id: String,
         public capitals: String[],
         public continents: String[],
         public name: String,
@@ -15,7 +16,7 @@ const allContinents = ['Asia', 'Africa', 'North America', 'South America', 'Anta
 
 export const loadCountries = async () => {
     const countries = await fetch("https://restcountries.com/v3.1/all").then(result=>result.json());
-    const allCountries = countries.map( c => new Country(c.capital, c.continents, c.name.common, c.population, c.maps.googleMaps) )
+    const allCountries = countries.map( c => new Country(c.id, c.capital, c.continents, c.name.common, c.population, c.maps.googleMaps) )
     return allCountries;
 } 
 const countries = await loadCountries();
@@ -24,8 +25,7 @@ export default class MainView extends React.Component {
     constructor(props) {
       super(props);
       this.state = {  continentes: allContinents, 
-                      paises: countriesOf('Europe'),
-                      tiempo: null};
+                      paises: countriesOf('Europe')};
     };
   
     continentClick = (continent, e) =>{
@@ -34,18 +34,23 @@ export default class MainView extends React.Component {
     }
     
     render() {
-      return (<> 
-                <h1>{this.state.continentes.map( c =>
-                  <a href='#' onClick={ (event) =>
-                      this.continentClick( c , event )}>
-                    <button key={c.id}>{c}</button>
-                  </a> )}
-                </h1>
-                <h2>{this.state.paises.map( pais =>
+      return (<> <p id='titulo'>El tiempo en las capitaes del mundo</p>
+                <div className="continentes">
+                {this.state.continentes.map( c =>
+                  <button className="continente" key={c.id} onClick={ (event) =>
+                    this.continentClick( c , event )}>{c}</button>  
+                )}</div>
+                <br></br>
+                <p>Clica una ciudad para ver que tiempo hace!</p>
+                <br></br>
+                <div className="paises">
+                {this.state.paises.map( pais =>
                   <Link to={`weather/${pais.capitals}`} >
-                    <button><h1>{pais.name}</h1><h2>{pais.capitals}</h2></button>
-                  </Link> )}
-                </h2>
+                    {pais.capitals?
+                    <button className="pais" key = {pais.id} ><h1>{pais.capitals}</h1><h2>{pais.name}</h2></button> :
+                    null
+                    }
+                  </Link> )}</div>
               </>
         );
     }
