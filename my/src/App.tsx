@@ -1,14 +1,20 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import WeatherView, { Weather} from "./components/Weather";
+import MainView from "./components/Countries";
+import ReactDOM from 'react-dom/client';
 
- export default function App() {
- return (
- <BrowserRouter>
- <Routes>
- <Route path="/" element={<h1> Welcome Home </h1>} />
- <Route path="/about" element={<h1> About</h1>} />
- </Routes>
- </BrowserRouter>
- );
-}
 
+export default function App() {
+    
+    return (
+        <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<MainView />} />
+            <Route path="/about" element={<WeatherView city = {'London'} />} />
+        </Routes>
+        </BrowserRouter>
+    );
+}    
+  
