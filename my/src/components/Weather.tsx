@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MY_TOKEN } from "./config";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export class Weather {
     constructor(
@@ -22,13 +23,14 @@ export const loadWeather = async ( city: String ) => {
     return weather;
 } 
 
-export default function WeatherView(city : String) {
-
+export default function WeatherView() {
+    const {city} = useParams();
+    debugger
     const [details, setDetails] = useState({})
   
     useEffect(() => {
       const fetchData = async () => {
-        const result = await axios(`https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=7620996b0816cbf84b12a072927f9f0f`);
+        const result = await axios(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${MY_TOKEN}`);
         const weather = new Weather(result.data.name, result.data.main.temp, result.data.main.temp_max, result.data.main.temp_min, result.data.main.feels_like, result.data.main.humidity, result.data.weather[0].description, result.data.weather[0].icon);
       
         setDetails(weather)

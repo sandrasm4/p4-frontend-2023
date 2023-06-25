@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 
 export class Country {
     constructor(
@@ -42,7 +42,7 @@ export default class MainView extends React.Component {
                   </a> )}
                 </h1>
                 <h2>{this.state.paises.map( pais =>
-                  <Link to="about">
+                  <Link to={`weather/${pais.capitals}`} >
                     <button><h1>{pais.name}</h1><h2>{pais.capitals}</h2></button>
                   </Link> )}
                 </h2>

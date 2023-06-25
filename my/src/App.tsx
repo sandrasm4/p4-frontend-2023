@@ -12,7 +12,7 @@ export default function App() {
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<MainView />} />
-            <Route path="/about" element={<WeatherView city = {'London'} />} />
+            <Route path="/weather/:city" element={<WeatherView />} />
         </Routes>
         </BrowserRouter>
     );
